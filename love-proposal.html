@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy Birthday MA</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    body, html {
+    html, body {
       margin: 0; padding: 0;
       min-height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffaaaa);
       color: #fff;
       overflow-x: hidden;
+      box-sizing: border-box;
     }
     #termsContainer, #contentContainer, #finalContainer {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -22,11 +24,11 @@
       text-align: center;
     }
     #termsContainer {background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff8cc6);}
-    h2 {font-size: 2.5em; margin-bottom: 10px;}
+    h2 {font-size: 2.2em; margin-bottom: 10px;}
     .continue-btn {
       margin-top: 30px;
       padding: 15px 40px;
-      font-size: 1.2em;
+      font-size: 1.1em;
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
       border: none;
       border-radius: 30px;
@@ -36,17 +38,17 @@
       box-shadow: 0 5px 15px rgba(255, 75, 43, 0.6);
     }
     .continue-btn:hover {
-      transform: scale(1.1);
+      transform: scale(1.07);
       box-shadow: 0 0 25px 5px rgba(255, 75, 43, 0.8);
     }
     #quoteDisplay {
       font-size: 2em;
-      min-height: 140px;
-      max-width: 95vw;
+      min-height: 110px;
+      max-width: 98vw;
       margin-bottom: 30px;
       background: rgba(255,255,255,0.10);
       border-radius: 20px;
-      padding: 30px 18px;
+      padding: 24px 10px;
       box-shadow: 0 0 15px rgba(255,255,255,0.3);
       font-weight: 600;
       background: linear-gradient(270deg, #ff416c, #ff4b2b, #ff416c);
@@ -55,6 +57,8 @@
       -webkit-text-fill-color: transparent;
       animation: gradientShift 8s ease infinite;
       text-shadow: 0 1px 2px #0002;
+      word-break: break-word;
+      box-sizing: border-box;
     }
     @keyframes gradientShift {
       0% {background-position: 0% 50%;}
@@ -63,8 +67,11 @@
     }
     .typing {
       border-right: .12em solid white;
-      white-space: nowrap;
+      white-space: normal !important;
+      word-break: break-word;
+      overflow-wrap: break-word;
       overflow: hidden;
+      display: inline;
       animation: typing 2.5s steps(40, end), blink-caret .75s step-end infinite;
     }
     @keyframes typing {
@@ -95,56 +102,60 @@
       min-height: 100vh;
       background: linear-gradient(120deg, #ff416c, #ff4b2b, #ff8cc6);
       position: relative;
-      padding-top: 60px;
-      padding-bottom: 40px;
+      padding-top: 40px;
+      padding-bottom: 30px;
     }
     #finalMessage {
-      font-size: 3em;
+      font-size: 2.2em;
       font-weight: 900;
       text-shadow: 0 0 15px #ff0062, 0 0 30px #ff0062;
       animation: pulse 2s infinite;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       letter-spacing: 2px;
       background: linear-gradient(90deg,#fff,#ff6b6b,#fff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      word-break: break-word;
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1);}
-      50% { transform: scale(1.1);}
+      50% { transform: scale(1.08);}
     }
     #typedQuotes {
-      width: 95vw;
+      width: 98vw;
       max-width: 600px;
-      min-height: 220px;
+      min-height: 140px;
       background: rgba(255,255,255,0.13);
       border-radius: 20px;
       box-shadow: 0 0 20px #ff7eb3;
-      padding: 35px 20px 25px 20px;
+      padding: 22px 10px 18px 10px;
       color: #fff;
-      font-size: 1.18em;
+      font-size: 1.08em;
       text-align: left;
-      margin: 0 auto 25px auto;
+      margin: 0 auto 18px auto;
       backdrop-filter: blur(3px);
       animation: fadeInUp 1.5s;
       position: relative;
       overflow: auto;
+      word-break: break-word;
+      box-sizing: border-box;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(40px);}
       to { opacity: 1; transform: translateY(0);}
     }
     #finalNote {
-      margin-top: 30px;
-      font-size: 1.3em;
+      margin-top: 20px;
+      font-size: 1.1em;
       color: #fff;
       text-shadow: 0 0 10px #ff7eb3;
       font-style: italic;
       text-align: center;
+      word-break: break-word;
     }
     #musicControl {
       position:fixed;
-      top:20px; right:20px;
+      top:16px; right:16px;
       background:transparent;
       border:none;
       font-size:2em;
@@ -154,7 +165,7 @@
       z-index:10;
       transition:transform 0.2s;
     }
-    #musicControl:hover {transform:scale(1.15);}
+    #musicControl:active {transform:scale(1.15);}
     .confetti {
       position: fixed;
       width: 10px;
@@ -172,9 +183,18 @@
         opacity: 0;
       }
     }
+    /* Responsive design for mobile */
     @media (max-width: 600px) {
-      #quoteDisplay, #typedQuotes {font-size: 1em; padding: 20px;}
-      #finalMessage {font-size: 2em;}
+      h2 {font-size: 1.3em;}
+      #quoteDisplay {font-size: 1.15em; padding: 12px 4vw;}
+      #finalMessage {font-size: 1.3em;}
+      #typedQuotes {font-size: 0.98em; padding: 12px 4vw;}
+      .continue-btn {font-size: 1em; padding: 12px 18px;}
+      #finalNote {font-size: 1em;}
+    }
+    @media (max-width: 400px) {
+      #quoteDisplay, #typedQuotes {font-size: 0.9em;}
+      #finalMessage {font-size: 1em;}
     }
   </style>
 </head>
@@ -211,8 +231,8 @@
 
 <!-- Music Controls -->
 <button id="musicControl" title="Pause/Play Music">🔊</button>
-<!-- Local music file: place your MP3 in the same folder as this HTML -->
-<audio id="bgMusic" loop src="you-mean-the-world-to-me.m4a"></audio>
+<!-- Local music file: place your audio file in the same folder as this HTML -->
+<audio id="bgMusic" loop src="you_mean_the_world_to_me.m4a"></audio>
 
 <script>
   // 19 Romantic Quotes
@@ -393,16 +413,17 @@
   function typeAllBirthdayQuotes(idx) {
     if (idx >= allBirthdayQuotes.length) return;
     let li = document.createElement('div');
-    li.style.marginBottom = "14px";
+    li.style.marginBottom = "12px";
     li.style.lineHeight = "1.5";
     li.style.textShadow = "0 1px 2px #0002";
     li.style.fontWeight = "500";
+    li.style.wordBreak = "break-word";
     typedQuotes.appendChild(li);
     typeQuote((idx+1) + ". " + allBirthdayQuotes[idx], () => {
       setTimeout(() => {
         typeAllBirthdayQuotes(idx+1);
         typedQuotes.scrollTop = typedQuotes.scrollHeight;
-      }, 330);
+      }, 320);
     }, li);
   }
 
